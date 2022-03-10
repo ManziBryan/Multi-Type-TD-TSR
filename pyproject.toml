@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "Multi-Type-TD-TSR"
+version = "0.1.0"
+description = ""
+authors = ["Manzi Bryan <manzi.bryan@appian.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+opencv-python = "^4.6.0"
+pandas = "^1.4.3"
+lxml = "^4.9.1"
+
+
+[tool.poe.tasks]
+## See https://github.com/python-poetry/poetry/issues/2543
+run-ltt = "pip install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu "
+detectron2-install = "pip install 'git+https://github.com/facebookresearch/detectron2.git'"
+autoinstall-torch-cuda = ["run-ltt", "detectron2-install"]
+
+[tool.poetry.dev-dependencies]
+black = "^21.6b0"
+poethepoet = "^0.16.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
